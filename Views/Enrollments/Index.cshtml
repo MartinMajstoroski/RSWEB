@@ -1,0 +1,124 @@
+﻿@model IEnumerable<ProektRS.Models.Enrollment>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Enrollment</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>      
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Course)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Student)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.semester)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.year)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.grade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.seminalUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.projectUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.examPoints)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.seminalPoints)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.projectPoints)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.additionalPoints)
+            </th>
+            <th>
+            <th>
+                @Html.DisplayNameFor(model => model.totalPoints)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.finishDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Course.title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Student.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.semester)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.grade)
+            </td>
+           <td>
+                @if(@item.seminalUrl != null)
+                {    
+                        <a href="~/seminals/@item.seminalUrl">Open seminal file</a>
+                    }
+                    else
+                    {
+                        <span>No file uploaded</span>
+                    }
+            </td>
+            <td>
+                 @if(@item.projectUrl != null)
+                {    
+                        <a href="@item.projectUrl">Open project link</a>
+                    }
+                    else
+                    {
+                        <span>No link uploaded</span>
+                    }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.examPoints)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.seminalPoints)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.projectPoints)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.additionalPoints)
+            </td>
+            <td>
+            <td>
+                @Html.DisplayFor(modelItem => item.totalPoints)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.finishDate)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
